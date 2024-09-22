@@ -46,7 +46,7 @@ If you encounter any problems installing `fast_hadamard_transform` using pip, pl
 For experiments applying RoLoRA on LLaMA2-7B, please run
 
 ```bash
-sh llama2_rolora.sh
+sh rolora.sh
 ```
 
 Remove `--rotate_down_proj` and `--rotate_mode 'hadamard'` for LoRA baseline without rotation. 
