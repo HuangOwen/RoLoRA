@@ -1,6 +1,6 @@
 # RoLoRA
 
-This repository contains the code of SpinQuant introduced in our work: "[RoLoRA: Fine-tuning Rotated Outlier-free LLMs for Effective Weight-Activation Quantization](https://arxiv.org/abs/2407.08044)", published in EMNLP 2024. 
+This repository contains the code of RoLoRA introduced in our work: "[RoLoRA: Fine-tuning Rotated Outlier-free LLMs for Effective Weight-Activation Quantization](https://arxiv.org/abs/2407.08044)", published in EMNLP 2024. 
 
 ## Abstract
 
