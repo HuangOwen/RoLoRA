@@ -1,10 +1,10 @@
 # RoLoRA
 
-This repository contains the code of SpinQuant introduced in our work: "[RoLoRA: Fine-tuning Rotated Outlier-free LLMs for Effective Weight-Activation Quantization](https://arxiv.org/abs/2407.08044)", published in EMNLP 2024. This paper presents RoLoRA, an efficient LLM fine-tuning method preserving the outlier-free characteristics brought by rotation operations for effective weight-activation quantization.
+This repository contains the code of SpinQuant introduced in our work: "[RoLoRA: Fine-tuning Rotated Outlier-free LLMs for Effective Weight-Activation Quantization](https://arxiv.org/abs/2407.08044)", published in EMNLP 2024. 
 
 ## Abstract
 
-Low-Rank Adaptation (LoRA), as a representative Parameter-Efficient Fine-Tuning (PEFT) method, significantly enhances the training efficiency by updating only a small portion of the weights in Large Language Models (LLMs). Recently, weight-only quantization techniques have also been applied to LoRA methods to reduce the memory footprint of fine-tuning. However, applying weight-activation quantization to the LoRA pipeline is under-explored, and we observe substantial performance degradation primarily due to the presence of activation outliers. In this work, we propose RoLoRA, the first LoRA-based scheme to apply rotation for outlier elimination, and then fine-tune rotated outlier-free LLMs for effective weight-activation quantization. Different from previous work tackling the outlier challenges from a post-training perspective, we propose rotation-aware fine-tuning to eliminate and preserve the outlier-free characteristics brought by rotation operations. RoLoRA can improve low-bit LoRA convergence and post-training quantization robustness in weight-activation settings. RoLoRA is evaluated across various LLM series (LLaMA2, LLaMA3, LLaVA-1.5), tasks, and quantization settings, achieving up to 29.5% absolute accuracy gain of 4-bit weight-activation quantized LLaMA2-13B on commonsense reasoning tasks compared to LoRA baseline. We further demonstrate its effectiveness on Large Multimodal Models (LMMs) and prove the compatibility with advanced LoRA variants.
+In this work, we propose RoLoRA, the first LoRA-based scheme to apply rotation for outlier elimination, and then fine-tune rotated outlier-free LLMs for effective weight-activation quantization. RoLoRA can improve low-bit LoRA convergence and post-training quantization robustness in weight-activation settings. RoLoRA is evaluated across various LLM series, tasks, and quantization settings, achieving up to 29.5% absolute accuracy gain of 4-bit weight-activation quantization of LLaMA2-13B on commonsense reasoning tasks compared to LoRA baseline. 
 
 <div align=center>
 <img width=80% src="./rolora.png"/>
@@ -23,7 +23,7 @@ If you find our code useful for your research, please consider citing:
 
 ## Code Structure
 
-Refer to ./scr/llamafactory/rotation/* for the core implementation of RoLoRA
+Refer to `./scr/llamafactory/rotation/*` for the core implementation of RoLoRA
 
 ## Getting Started
 
@@ -77,12 +77,12 @@ Below is the results in LLaMA-7B and LLaMA-13B with six commonsense reasoning da
 
 | #Bits | Quantizer | Method          | LLaMA-2 7B  | LLaMA-2 7B | LLaMA-2 13B       | LLaMA-2 13B  | LLaMA-3 8B        | LLaMA-3 8B  |
 |-------|-----------|-----------------|-------------------|---------------|---------------|-------------------|---------------|---------------|
-|       |             | ZCSR Avg.         | MMLU Avg.     | ZCSR Avg.         | MMLU Avg.     | ZCSR Avg.         | MMLU Avg.     |
+|       |             |               |  ZCSR Avg.        | MMLU Avg.     | ZCSR Avg.         | MMLU Avg.     | ZCSR Avg.         | MMLU Avg.     |
 | FP16  | -         | LoRA            | 68.4              | 43.5          | 70.5              | 52.4          | 70.0              | 62.7          |
 | W4A4  | RTN       | LoRA            | 35.8              | 23.5          | 34.4              | 24.2          | 36.7              | 23.3          |
 | W4A4  | RTN       | RoLoRA          | **54.1** (↑18.3)  | **25.8** (↑2.3)| **58.7** (↑24.3)  | **30.5** (↑6.3)| **50.0** (↑13.3)  | **32.1** (↑8.8)|
 | W4A4  | GPTQ      | LoRA            | 37.0              | 23.5          | 34.4              | 24.4          | 36.6              | 23.9          |
-| W4A4  | GPTQ     | RoLoRA          | **62.3** (↑25.3)  | **31.0** (↑7.5)| **63.9** (↑29.5)  | **38.9** (↑14.5)| **56.6** (↑20.0)  | **38.5** (↑14.6)|
+| W4A4  | GPTQ     | RoLoRA           | **62.3** (↑25.3)  | **31.0** (↑7.5)| **63.9** (↑29.5)  | **38.9** (↑14.5)| **56.6** (↑20.0)  | **38.5** (↑14.6)|
 | W6A6  | RTN       | LoRA            | 65.3              | 35.9          | 67.3              | 47.3          | 67.7              | 55.3          |
 | W6A6  | RTN       | RoLoRA          | **66.8** (↑1.5)   | **40.5** (↑4.6)| **68.4** (↑1.1)   | **47.7** (↑0.4)| **67.8** (↑0.1)   | **59.4** (↑4.1)|
 | W6A6  | GPTQ      | LoRA            | 65.5              | 35.7          | 68.0              | 47.6          | 67.8              | 54.3          |
