@@ -1,10 +1,10 @@
-# RoLoRA
+# 🔄 RoLoRA
 
 This repository contains the code of RoLoRA introduced in our work: "[RoLoRA: Fine-tuning Rotated Outlier-free LLMs for Effective Weight-Activation Quantization](https://arxiv.org/abs/2407.08044)", published in EMNLP 2024. 
 
 ## Abstract
 
-In this work, we propose RoLoRA, the first LoRA-based scheme to apply rotation for outlier elimination, and then fine-tune rotated outlier-free LLMs for effective weight-activation quantization. RoLoRA can improve low-bit LoRA convergence and post-training quantization robustness in weight-activation settings. RoLoRA is evaluated across various LLM series, tasks, and quantization settings, achieving up to 29.5% absolute accuracy gain of 4-bit weight-activation quantization of LLaMA2-13B on commonsense reasoning tasks compared to LoRA baseline. 
+In this work, we propose RoLoRA, the first LoRA-based scheme to apply rotation for outlier elimination, and then fine-tune rotated outlier-free LLMs for effective weight-activation quantization. RoLoRA can improve low-bit LoRA convergence and post-training quantization robustness in weight-activation quantization settings. RoLoRA is evaluated across various LLM series, tasks, and quantization settings, achieving up to 29.5% absolute accuracy gain of 4-bit weight-activation quantization of LLaMA2-13B on commonsense reasoning tasks compared to LoRA baseline. 
 
 <div align=center>
 <img width=80% src="./rolora.png"/>
@@ -23,7 +23,11 @@ If you find our code useful for your research, please consider citing:
 
 ## Code Structure
 
-Refer to `./scr/llamafactory/rotation/*` for the core implementation of RoLoRA
+Refer to `./scr/llamafactory/rotation/*` for the core implementation of RoLoRA 
+
+Refer to `./scr/llamafactory/hparams/model_args.py` for the arguments related to the rotation settings of RoLoRA
+
+Refer to `./scr/llamafactory/model/loader.py` for applying rotation when loading models
 
 ## Getting Started
 
@@ -59,21 +63,22 @@ To merge RoLoRA adapter to LLaMA2-7B, please run
 sh merge_rolora.sh
 ```
 
-Specify `adapter_name_or_path` and `export_dir` to be path of adapter files and export target folder. Remove `--rotate_down_proj` and `--rotate_mode 'hadamard'` for merging LoRA adapter without rotation. 
+Specify `--adapter_name_or_path` and `--export_dir` to be path of adapter files and export target folder. Remove `--rotate_down_proj` and `--rotate_mode 'hadamard'` for merging LoRA adapter without rotation. 
 
 ## Evaluation
 
-For evaluation on zero-shot commonsense reasoning and MMLU benchmarks, please run
+For evaluation on Zero-shot CommonSense Reasoning (ZCSR) and MMLU benchmarks, please run
 
 ```bash
-sh eval_zero_shot_rotate.sh
+sh eval_rolora.sh
 ```
 
-Specify `$NAME`, `WBITS`, and `ABITS` for the target quantization settings. Use `--w_rtn` for RTN quantization on weights (default is GPTQ). 
+Specify `$NAME`, `$WBITS`, and `$ABITS` for the target quantization settings. Use `--w_rtn` for RTN quantization on weights (default is GPTQ). 
+If you want evaluate the quantized models on more tasks, modify `--task` to any tasks that are included in [lm-evaluation-harness](https://github.com/EleutherAI/lm-evaluation-harness).
 
 ## Results
 
-Below is the results in LLaMA-7B and LLaMA-13B with six commonsense reasoning datasets.
+Below is the results in LLaMA2-7B, LLaMA2-13B, and LLaMA3-8B on commonsense reasoning and MMLU benchmarks.
 
 | #Bits | Quantizer | Method          | LLaMA-2 7B  | LLaMA-2 7B | LLaMA-2 13B       | LLaMA-2 13B  | LLaMA-3 8B        | LLaMA-3 8B  |
 |-------|-----------|-----------------|-------------------|---------------|---------------|-------------------|---------------|---------------|
