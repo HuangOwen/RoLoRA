@@ -23,9 +23,9 @@ CUDA_VISIBLE_DEVICES=0 python src/train.py \
 --eval_steps 5000 \
 --optim adamw_torch \
 --report_to wandb \
---output_dir saves/llama2-7b-rolora-qv-r8 \
+--output_dir saves/llama2-7b-rolora-qv-r16 \
 --fp16 True \
---lora_rank 8 \
+--lora_rank 16 \
 --lora_alpha 16 \
 --lora_dropout 0 \
 --lora_target q_proj.module,v_proj.module \

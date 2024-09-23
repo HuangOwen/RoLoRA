@@ -21,14 +21,6 @@ If you find our code useful for your research, please consider citing:
       year={2024}
     }
 
-## Code Structure
-
-Refer to `./scr/llamafactory/rotation/*` for the core implementation of RoLoRA 
-
-Refer to `./scr/llamafactory/hparams/model_args.py` for the arguments related to the rotation settings of RoLoRA
-
-Refer to `./scr/llamafactory/model/loader.py` for applying rotation when loading models
-
 ## Getting Started
 
 ### Huggingface Hub Login

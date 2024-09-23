@@ -1,4 +1,4 @@
-NAME="llama2-7b-rolora-qv-r8"
+NAME="llama2-7b-rolora-qv-r16"
 PRETRAINED="meta-llama/Llama-2-7b-hf"
 WBITS=4
 ABITS=4
