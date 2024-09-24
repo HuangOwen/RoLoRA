@@ -70,7 +70,7 @@ If you want evaluate the quantized models on more tasks, modify `--task` to any 
 
 ## Results
 
-Below is the results in LLaMA2-7B, LLaMA2-13B, and LLaMA3-8B on commonsense reasoning and MMLU benchmarks.
+Below is the results in LLaMA2-7B, LLaMA2-13B, and LLaMA3-8B on zero-shot commonsense reasoning（ZCSR）and MMLU benchmarks.
 
 | #Bits | Quantizer | Method          | LLaMA-2 7B  | LLaMA-2 7B | LLaMA-2 13B       | LLaMA-2 13B  | LLaMA-3 8B        | LLaMA-3 8B  |
 |-------|-----------|-----------------|-------------------|---------------|---------------|-------------------|---------------|---------------|
@@ -87,6 +87,6 @@ Below is the results in LLaMA2-7B, LLaMA2-13B, and LLaMA3-8B on commonsense reas
 
 ## Acknowledgement
 
-This repo benefits from [LLaMa-Factory](https://github.com/hiyouga/LLaMA-Factory), [QuaRot](https://github.com/spcl/QuaRot), and [fast-hadamard-transform](https://github.com/Dao-AILab/fast-hadamard-transform). Thanks for their wonderful works!
+This repo benefits from [SpinQuant](https://github.com/facebookresearch/SpinQuant), [QuaRot](https://github.com/spcl/QuaRot), [LLaMa-Factory](https://github.com/hiyouga/LLaMA-Factory), and [fast-hadamard-transform](https://github.com/Dao-AILab/fast-hadamard-transform). Thanks for their wonderful works!
 
 If you have any questions, feel free to contact Xijie Huang (xhuangbs AT connect.ust.hk, huangxijie1108 AT gmail.com)
