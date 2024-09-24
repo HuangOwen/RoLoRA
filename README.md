@@ -1,16 +1,18 @@
 # 🔄 RoLoRA
 
+<div align=center><img src="./assets/rolora_logo.png" width="80%"></div> 
+
 This repository contains the code of RoLoRA introduced in our work: "[RoLoRA: Fine-tuning Rotated Outlier-free LLMs for Effective Weight-Activation Quantization](https://arxiv.org/abs/2407.08044)", published in EMNLP 2024. 
 
-## Abstract
+## 🌟 Abstract
 
 In this work, we propose RoLoRA, the first LoRA-based scheme to apply rotation for outlier elimination, and then fine-tune rotated outlier-free LLMs for effective weight-activation quantization. RoLoRA can improve low-bit LoRA convergence and post-training quantization robustness in weight-activation quantization settings. RoLoRA is evaluated across various LLM series, tasks, and quantization settings, achieving up to 29.5% absolute accuracy gain of 4-bit weight-activation quantization of LLaMA2-13B on commonsense reasoning tasks compared to LoRA baseline. 
 
 <div align=center>
-<img width=80% src="./rolora.png"/>
+<img width=80% src="./assets/rolora.png"/>
 </div>
 
-## Citation
+## 🌿 Citation
 
 If you find our code useful for your research, please consider citing:
 
@@ -21,7 +23,7 @@ If you find our code useful for your research, please consider citing:
       year={2024}
     }
 
-## Getting Started
+## 🛠️ Getting Started
 
 ### Huggingface Hub Login
 
@@ -37,7 +39,7 @@ pip install -r requirements.txt
 ```
 If you encounter any problems installing `fast_hadamard_transform` using pip, please consider building from [source](https://github.com/Dao-AILab/fast-hadamard-transform)
 
-## Finetuning 
+## 🚂 Finetuning 
 
 For experiments applying RoLoRA on LLaMA2-7B, please run
 
@@ -47,7 +49,7 @@ sh rolora.sh
 
 Remove `--rotate_down_proj` and `--rotate_mode 'hadamard'` for LoRA baseline without rotation. 
 
-## Merging
+## ⌛ Merging
 
 To merge RoLoRA adapter to LLaMA2-7B, please run
 
@@ -57,7 +59,7 @@ sh merge_rolora.sh
 
 Specify `--adapter_name_or_path` and `--export_dir` to be path of adapter files and export target folder. Remove `--rotate_down_proj` and `--rotate_mode 'hadamard'` for merging LoRA adapter without rotation. 
 
-## Evaluation
+## 🔍 Evaluation
 
 For evaluation on Zero-shot CommonSense Reasoning (ZCSR) and MMLU benchmarks, please run
 
@@ -68,7 +70,15 @@ sh eval_rolora.sh
 Specify `$NAME`, `$WBITS`, and `$ABITS` for the target quantization settings. Use `--w_rtn` for RTN quantization on weights (default is GPTQ). 
 If you want evaluate the quantized models on more tasks, modify `--task` to any tasks that are included in [lm-evaluation-harness](https://github.com/EleutherAI/lm-evaluation-harness).
 
-## Results
+## 💾 Checkpoint
+
+We provide the checkpoints for the RoLoRA-finetuned LLMs in the given huggingface repo. The evaluation logs are also included.
+
+- [`ScarletAce/LLaMA2-7B-RoLoRA`](https://huggingface.co/ScarletAce/LLaMA2-7B-RoLoRA)
+- [`ScarletAce/LLaMA2-13B-RoLoRA`](https://huggingface.co/ScarletAce/LLaMA2-13B-RoLoRA)
+- [`ScarletAce/LLaMA3-8B-RoLoRA`](https://huggingface.co/ScarletAce/LLaMA3-8B-RoLoRA)
+
+## 📚 Results
 
 Below is the results in LLaMA2-7B, LLaMA2-13B, and LLaMA3-8B on zero-shot commonsense reasoning（ZCSR）and MMLU benchmarks.
 
@@ -85,7 +95,7 @@ Below is the results in LLaMA2-7B, LLaMA2-13B, and LLaMA3-8B on zero-shot common
 | W6A6  | GPTQ      | LoRA            | 65.5              | 35.7          | 68.0              | 47.6          | 67.8              | 54.3          |
 | W6A6  | GPTQ      | RoLoRA          | **67.1** (↑1.6)   | **40.8** (↑5.1)| **68.8** (↑0.8)   | **47.9** (↑0.3)| **68.1** (↑0.3)   | **59.4** (↑5.1)|
 
-## Acknowledgement
+## 💌 Acknowledgement
 
 This repo benefits from [SpinQuant](https://github.com/facebookresearch/SpinQuant), [QuaRot](https://github.com/spcl/QuaRot), [LLaMa-Factory](https://github.com/hiyouga/LLaMA-Factory), and [fast-hadamard-transform](https://github.com/Dao-AILab/fast-hadamard-transform). Thanks for their wonderful works!
 
